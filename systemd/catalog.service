@@ -1,0 +1,15 @@
+[Unit]
+Description=Trailside Outdoor Catalog HTTP Service
+After=network.target
+
+[Service]
+Type=simple
+User=dbizz0
+WorkingDirectory=/home/dbizz0/system-reporter
+ExecStart=/usr/bin/python3 /home/dbizz0/system-reporter/catalog/app.py
+Restart=on-failure
+RestartSec=3
+
+[Install]
+WantedBy=multi-user.target
+
