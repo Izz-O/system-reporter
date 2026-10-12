@@ -1,0 +1,18 @@
+[Unit]
+Description=Trailside Inventory HTTP Service
+After=network.target
+
+[Service]
+Type=simple
+User=svcuser
+WorkingDirectory=/opt/trailside/inventory
+ExecStart=/usr/bin/python3 /opt/trailside/inventory/app.py
+Restart=on-failure
+RestartSec=3
+NoNewPrivileges=true
+ProtectSystem=strict
+ProtectHome=true
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target
