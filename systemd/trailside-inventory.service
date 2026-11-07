@@ -1,18 +1,14 @@
 [Unit]
-Description=Trailside Inventory HTTP Service
-After=network.target
+Description=Trailside Inventory (Docker container)
+After=docker.service network.target
+Requires=docker.service
 
 [Service]
-Type=simple
-User=svcuser
-WorkingDirectory=/opt/trailside/inventory
-ExecStart=/usr/bin/python3 /opt/trailside/inventory/app.py
+ExecStartPre=-/usr/bin/docker rm -f trailside-inventory
+ExecStart=/usr/bin/docker run --rm --name trailside-inventory -p 8002:8002 trailside-inventory
+ExecStop=/usr/bin/docker stop trailside-inventory 
 Restart=on-failure
-RestartSec=3
-NoNewPrivileges=true
-ProtectSystem=strict
-ProtectHome=true
-PrivateTmp=true
+RestartSec3
 
 [Install]
 WantedBy=multi-user.target
