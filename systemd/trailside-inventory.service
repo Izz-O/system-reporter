@@ -8,7 +8,7 @@ ExecStartPre=-/usr/bin/docker rm -f trailside-inventory
 ExecStart=/usr/bin/docker run --rm --name trailside-inventory -p 8002:8002 trailside-inventory
 ExecStop=/usr/bin/docker stop trailside-inventory 
 Restart=on-failure
-RestartSec3
+RestartSec=3
 
 [Install]
 WantedBy=multi-user.target
