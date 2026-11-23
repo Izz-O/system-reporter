@@ -1,0 +1,18 @@
+[Unit]
+Description=Trailside Orders HTTP Service
+After=network.target
+
+[Service]
+Type=simple
+User=svcuser
+WorkingDirectory=/opt/trailside/orders
+ExecStart=/usr/bin/python3 /opt/trailside/orders/app.py
+Restart=on-failure
+RestartSec=3
+NoNewPrivileges=true
+ProtectSystem=strict
+ProtectHome=true
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target
